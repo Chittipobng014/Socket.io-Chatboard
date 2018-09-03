@@ -1,4 +1,5 @@
-var app = require('express')();
+var express = require('express')
+var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var cors = require('cors');
@@ -9,18 +10,10 @@ app.listen(process.env.PORT || 8080);
 var clients = {};
 
 app.use(cors())
+app.use(express.static(__dirname + "/static"));
 
 app.get('/', function (req, res) {
-  fs.readFile(__dirname + '/index.html',
-  function (err, data) {
-    if (err) {
-      res.writeHead(500);
-      return res.end('Error loading index.html');
-    }
-
-    res.writeHead(200);
-    res.end(data);
-  });
+  res.sendFile(__dirname + 'static/index.html');
 });
 
 io.sockets.on('connection', function (socket) {
