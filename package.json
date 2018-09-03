@@ -4,11 +4,13 @@
   "description": "ERROR: No README.md file found!",
   "main": "app.js",
   "scripts": {
+    "start": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": "",
-  "author": "Michael Heap <m@michaelheap.com>",
+  "repository": "https://github.com/Chittipobng014/Socket.io-Chatboard.git",
+  "author": "Noriko <tpl_army@hotmail.com>",
   "dependencies": {
+    "nodemon": ">= 1.0.0",
     "socket.io": ">= 1.0.0"
   }
 }
