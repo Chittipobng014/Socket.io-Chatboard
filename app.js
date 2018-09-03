@@ -1,10 +1,13 @@
 var app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
+var cors = require('cors');
 
-app.listen(3000);
+app.listen(process.env.PORT || 8080);
 
 var clients = {};
+
+app.use(cors())
 
 app.get('/', function (req, res) {
   res.sendFile(__dirname + '/index.html');
