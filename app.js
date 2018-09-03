@@ -4,25 +4,17 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var cors = require('cors');
 var fs = require('fs')
+var path = require('path')
 
-app.listen(process.env.PORT || 8080);
+http.listen(process.env.PORT || 8080);
 
 var clients = {};
 
 app.use(cors())
-app.use('/', express.static('public'))
+app.use('/static', express.static('public'))
 
 app.get('/', function (req, res) {
-  fs.readFile(__dirname + '/index.html',
-  function (err, data) {
-    if (err) {
-      res.writeHead(500);
-      return res.end('Error loading index.html');
-    }
-
-    res.writeHead(200);
-    res.end(data);
-  });
+  res.sendfile(path.resolve(__dirname, './static/index.html'));
 });
 
 io.sockets.on('connection', function (socket) {
