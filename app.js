@@ -10,10 +10,19 @@ app.listen(process.env.PORT || 8080);
 var clients = {};
 
 app.use(cors())
-app.use(express.static(__dirname + "/static"));
+app.use('/', express.static('public'))
 
 app.get('/', function (req, res) {
-  res.sendFile(__dirname + 'static/index.html');
+  fs.readFile(__dirname + '/index.html',
+  function (err, data) {
+    if (err) {
+      res.writeHead(500);
+      return res.end('Error loading index.html');
+    }
+
+    res.writeHead(200);
+    res.end(data);
+  });
 });
 
 io.sockets.on('connection', function (socket) {
