@@ -20,15 +20,15 @@ function handler (req, res) {
 }
 
 io.sockets.on('connection', function (socket) {
-
   socket.on('add-user', function(data){
     clients[data.username] = {
       "socket": socket.id
-    };
+    };    
+    console.log(clients);
   });
 
   socket.on('private-message', function(data){
-    console.log("Sending: " + data.content + " to " + data.username);
+    console.log("Sending: " + data.content + " from " + data.from + " to " + data.username);
     if (clients[data.username]){
       io.sockets.connected[clients[data.username].socket].emit("add-message", data);
     } else {
@@ -43,7 +43,8 @@ io.sockets.on('connection', function (socket) {
   			delete clients[name];
   			break;
   		}
-  	}	
+    }    
+    console.log(clients);	
   })
 
 });

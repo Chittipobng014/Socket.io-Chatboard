@@ -30,13 +30,13 @@
 <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script src="/socket.io/socket.io.js"></script>
 <script>
-  var socket = io.connect('http://localhost');
-
+  var socket = io();
+  var username;
   // Add a username
   $(".username-form").on("submit", function(){
 
     // Tell the server about it
-    var username = $(this).children("input").val();
+    username = $(this).children("input").val();
     socket.emit("add-user", {"username": username});
 
     // Remove this form and show the chat form
@@ -53,7 +53,8 @@
    // Send the message to the server
    socket.emit("private-message", {
     "username": $(this).find("input:first").val(),
-    "content": $(this).find("textarea").val()
+    "content": $(this).find("textarea").val(),
+    "from": username
    });
 
    // Empty the form
@@ -64,7 +65,7 @@
  // Whenever we receieve a message, append it to the <ul>
  socket.on("add-message", function(data){
   $("#messages").append($("<li>", {
-    "text": data.content
+    "text": data.from +": "+data.content
   }));
  });
 </script>
