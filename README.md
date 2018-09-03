@@ -1,19 +1,14 @@
-# socketio-chat-example
-Simple example to demostrate socket.io 
+# Socket.io-Chatboard
+This is my tutorial
 
 ## How to install ?
 
-Simply clone the repo and then install the dependencies 
-
-* Socket.io (npm install socket.io)
-
+npm install or yarn
 ## How to run the application ?
 
 run the node server by typing 
 
-```
-node app.js
-```
+npm start
 
 
 By default the app runs on port 3000, type in the url 
