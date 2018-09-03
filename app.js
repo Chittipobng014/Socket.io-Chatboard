@@ -2,6 +2,7 @@ var app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var cors = require('cors');
+var fs = require('fs')
 
 app.listen(process.env.PORT || 8080);
 
