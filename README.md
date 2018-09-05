@@ -2,14 +2,14 @@
 
 <h1>POST</h1>
   <h2>TO GET INCOMPLETE ORDERS</h2>
-    • /api/orders
+    • https://socketio-chatboard-tutorial.herokuapp.com/api/orders
       body: {
         pageid: pageid, 
         branchid: branchid  
       }
       
   <h2>TO GET NEW ORDER</h2>
-    • /api/neworder
+    • https://socketio-chatboard-tutorial.herokuapp.com/api/neworder
       body: {
         pageid: pageid, 
         branchid: branchid, 
@@ -17,7 +17,7 @@
       }
       
   <h2>TO UPDATE ORDER STATUS</h2>    
-    • /api/updatestatus
+    • https://socketio-chatboard-tutorial.herokuapp.com/api/updatestatus
       body: {
         pageid: pageid, 
         branchid: branchid, 
