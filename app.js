@@ -13,7 +13,7 @@ var clients = {};
 app.use(bodyParser.json());
 app.use(cors())
 app.use('/static', express.static('public'))
-app.use('/', router)
+app.use('/api', router)
 
 io.sockets.on('connection', function (socket) {
   socket.on('add-user', function (data) {
@@ -58,7 +58,6 @@ io.sockets.on('connection', function (socket) {
       }
     }
   })
-
 });
 
 

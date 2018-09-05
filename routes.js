@@ -2,8 +2,8 @@ var router = require('express').Router();
 var db = require('./api/quries');
 var path = require('path');
 
-router.post('/getorders', db.incompleteOrders)
-router.post('/getneworder', db.getNewOrder)
+router.post('/orders', db.incompleteOrders)
+router.post('/neworder', db.getNewOrder)
 router.post('/updatestatus', db.updateOrder)
 
 
