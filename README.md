@@ -32,8 +32,8 @@
     
   <h2>EMIT</h2>
     !TO GET JOIN THE SERVER
-    subscribe 
+    <p>subscribe</p>
     
   <h2>ON</h2>
   !TO GET NOTIFICATION IF NEW ORDER COMING
-  incoming-order
+  <p>incoming-order</p>
