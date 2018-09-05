@@ -25,9 +25,7 @@
       }
 
 <h1>SOCKET</h1>
-  <h2>INSTALL</h2>
-    npm install vue-socket.io --save
-    
+  <h2>SERVER</h2>    
     https://socketio-chatboard-tutorial.herokuapp.com/   
     
   <h2>EMIT</h2>
