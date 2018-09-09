@@ -35,6 +35,7 @@ io.sockets.on('connection', function (socket) {
     console.log('new order is sending to: ' + id);
     if (clients[id]) {
       io.sockets.connected[clients[id].socket].emit('incomingOrder', data)
+      console.log('Sending to'+id);
     } else {
       console.log('Client is not connected');      
     }
