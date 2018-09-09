@@ -34,7 +34,8 @@ io.sockets.on('connection', function (socket) {
     var id = data.pageid += data.branchid
     console.log('new order is sending to: ' + id);
     if (clients[id]) {
-      io.sockets.connected[clients[id].socket].emit('incoming-order', data)
+      io.sockets.connected[clients[id].socket].emit('incomingOrder', data)
+      console.log('Sending to'+id);
     } else {
       console.log('Client is not connected');      
     }
