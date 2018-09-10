@@ -38,23 +38,26 @@ var quries = {
             const branchid = req.body.branchid.toString();
             const orderid = req.body.orderid.toString();
             const order = await db.one(sql.getNewOrder, [pageid, branchid, orderid]);
-            const table = []
+            //const table = await db.one(sql.getTable, [orderid]);
+            const tables = await db.any(sql.getTables)
             const suborders = await db.any(sql.getNewSubs, [pageid, branchid, orderid]);
-            if (table.length > 0) {
-                const data = { order, suborders }
-                res.status(200).json({ response: data })
+            const tableData = tables.filter((table) => table.id == order.branchtableid)
+            if (tableData.length > 0) {
+                const table = tableData[0].tablename
+                const data = { ...order, suborders, table }
+                res.status(200).json({ response: { order: data } })
             }
-            const data = { order: { order, suborders, table } }
-            res.status(200).json({ response: data })
+            const data = { ...order, suborders }
+            res.status(200).json({ response: { order: data } })
         } catch (error) {
             return next(error)
         }
     },
     updateOrder: async function (req, res, next) {
         try {
-            const pageid = req.body.pageid.toString();
-            const branchid = req.body.branchid.toString();
-            const orderid = req.body.orderid.toString();
+            const pageid = req.body.pageid;
+            const branchid = req.body.branchid;
+            const orderid = req.body.orderid;
             const status = req.body.status;
             const updateorder = await db.none(sql.updateOrderStatus, [pageid, branchid, orderid, status])
             const updatesubs = await db.none(sql.updateSubsStatus, [pageid, branchid, orderid, status])
