@@ -50,6 +50,8 @@ var quries = {
             data.order = order;
             data.order.table = table.tablename
             data.order.suborders = suborders;
+            console.log(suborders);
+            console.log(data)
             res.status(200).json({
                 response: data
             })
