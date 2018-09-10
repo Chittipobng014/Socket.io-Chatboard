@@ -11,7 +11,7 @@ var db = pgp(connection);
 var quries = {
     incompleteOrders: async function (req, res, next) {
         try {
-            const pageid = req.body.pageid.toString();;
+            const pageid = req.body.pageid.toString();
             const branchid = req.body.branchid.toString();
             const orders = await db.any(sql.getIncompleteOrders, [pageid, branchid]);
             const tables = await db.any(sql.getTables)
@@ -52,10 +52,10 @@ var quries = {
     },
     updateOrder: async function (req, res, next) {
         try {
-            const pageid = req.body.pageid;
-            const branchid = req.body.branchid;
-            const orderid = req.body.orderid;
-            const status = req.body.status;
+            const pageid = req.body.pageid.toString();
+            const branchid = req.body.branchid.toString();
+            const orderid = req.body.orderid.toString();
+            const status = req.body.status.toString();
             const updateorder = await db.none(sql.updateOrderStatus, [pageid, branchid, orderid, status])
             const updatesubs = await db.none(sql.updateSubsStatus, [pageid, branchid, orderid, status])
             res.status(200).json({
