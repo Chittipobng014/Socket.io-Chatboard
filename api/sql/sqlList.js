@@ -21,7 +21,7 @@ var sql = {
         return sql
     },
     getNewSubs: function () {
-        var sql = "SELECT s.productname, s.quantity, s.orderid FROM suborders s WHERE s.branchid=$2 AND s.pageid=$1 AND s.status!='done' AND s.orderid=$3"
+        var sql = "SELECT s.id, s.productname, s.quantity, s.orderid FROM suborders s WHERE s.branchid=$2 AND s.pageid=$1 AND s.status!='done' AND s.orderid=$3"
         return sql
     },
     updateOrderStatus: function () {
