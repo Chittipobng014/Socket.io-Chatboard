@@ -21,9 +21,9 @@ var quries = {
                 const tableData = tables.filter((table) => table.id == order.branchtableid)
                 if (tableData.length > 0) {
                     const table = tableData[0].tablename
-                    return { ...order, suborderData, table }
+                    return { ...order, suborders: suborderData, table }
                 }
-                return { ...order, suborderData }
+                return { ...order, suborders: suborderData }
             })
             res.status(200).json({
                 response: { orders: ordersData }
