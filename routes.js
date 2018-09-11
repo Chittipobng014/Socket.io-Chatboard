@@ -1,13 +1,14 @@
-var router = require('express').Router();
-var db = require('./api/quries');
-var path = require('path');
+const router = require('express').Router();
+const db = require('./api/quries');
+const path = require('path');
 
 router.post('/orders', db.incompleteOrders)
 router.post('/neworder', db.getNewOrder)
 router.post('/updatestatus', db.updateOrder)
+router.post('/testorder', db.getOrders)
 
 
-router.get('/chat', function (req, res) {
+router.get('/chat', (req, res) => {
     res.sendfile(path.resolve(__dirname, './static/index.html'));
 });
 

@@ -1,15 +1,15 @@
-var promise = require('bluebird');
-var sql = require('./sql/sqlList')
-var options = {
+const promise = require('bluebird');
+const sql = require('./sql/sqlList')
+const options = {
     promiseLib: promise
 };
 
-var pgp = require('pg-promise')(options);
-var connection = 'postgres://neetfoopxhpbdt:1e4b5acdc214f0f5732c58b097ef453104d207337cb483852782fc887d0f32fd@ec2-107-20-133-82.compute-1.amazonaws.com:5432/d6b6rk916vau3r?ssl=true';
-var db = pgp(connection);
+const pgp = require('pg-promise')(options);
+const connection = 'postgres://neetfoopxhpbdt:1e4b5acdc214f0f5732c58b097ef453104d207337cb483852782fc887d0f32fd@ec2-107-20-133-82.compute-1.amazonaws.com:5432/d6b6rk916vau3r?ssl=true';
+const db = pgp(connection);
 
-var quries = {
-    incompleteOrders: async function (req, res, next) {
+module.exports = quries = {
+    incompleteOrders: async (req, res, next) => {
         try {
             const pageid = req.body.pageid.toString();;
             const branchid = req.body.branchid.toString();
@@ -32,7 +32,7 @@ var quries = {
             return next(error)
         }
     },
-    getNewOrder: async function (req, res, next) {
+    getNewOrder: async (req, res, next) => {
         try {
             const pageid = req.body.pageid.toString();
             const branchid = req.body.branchid.toString();
@@ -53,21 +53,30 @@ var quries = {
             return next(error)
         }
     },
-    updateOrder: async function (req, res, next) {
+    updateOrder: async (req, res, next) => {
         try {
-            const pageid = req.body.pageid;
-            const branchid = req.body.branchid;
-            const orderid = req.body.orderid;
-            const status = req.body.status;
-            const updateorder = await db.none(sql.updateOrderStatus, [pageid, branchid, orderid, status])
-            const updatesubs = await db.none(sql.updateSubsStatus, [pageid, branchid, orderid, status])
+            const pageid = req.body.pageid.toString();
+            const branchid = req.body.branchid.toString();
+            const orderid = req.body.orderid.toString();
+            const status = req.body.status.toString();
+            //const updateorder = await db.none(sql.updateOrderStatus, [pageid, branchid, orderid, status])
+            // const updatesubs = await db.none(sql.updateSubsStatus, [pageid, branchid, orderid, status])
+            const updateorder = await db.none(sql.updateOrderStatus, [pageid, orderid, status])
             res.status(200).json({
                 response: 'Update Success'
             })
         } catch (error) {
             return next(error)
         }
+    },
+    getOrders: async (req, res, next) => {
+        try {
+            const orders = await db.any(sql.orders);
+            res.status(200).json({
+                response: orders
+            })
+        } catch (error) {
+            return next(error)
+        }
     }
-}
-
-module.exports = quries
+};
