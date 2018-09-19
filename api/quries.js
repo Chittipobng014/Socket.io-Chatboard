@@ -56,12 +56,11 @@ module.exports = quries = {
     updateOrder: async (req, res, next) => {
         try {
             const pageid = req.body.pageid.toString();
-            const branchid = req.body.branchid.toString();
             const orderid = req.body.orderid.toString();
             const status = req.body.status.toString();
-            //const updateorder = await db.none(sql.updateOrderStatus, [pageid, branchid, orderid, status])
-            // const updatesubs = await db.none(sql.updateSubsStatus, [pageid, branchid, orderid, status])
+            //const updateorder = await db.none(sql.updateOrderStatus, [pageid, branchid, orderid, status])            
             const updateorder = await db.none(sql.updateOrderStatus, [pageid, orderid, status])
+            const updatesubs = await db.none(sql.updateSubsStatus, [pageid, orderid, status])
             res.status(200).json({
                 response: 'Update Success'
             })

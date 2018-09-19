@@ -13,7 +13,7 @@ module.exports = sql = {
     }
     ,
     getIncompleteSubs() {
-        const sql = "SELECT s.id, s.productname, s.quantity, s.orderid FROM suborders s WHERE s.branchid=$2 AND s.pageid=$1 AND s.status!='done'"
+        const sql = "SELECT s.id, s.productname, s.quantity, s.orderid, p.productsku, p.photourl, p.price, p.currency FROM suborders s JOIN products p on s.productid = p.id WHERE s.branchid=$2 AND s.pageid=$1 AND s.status!='done'"
         return sql
     },
     getNewOrder() {
@@ -21,7 +21,7 @@ module.exports = sql = {
         return sql
     },
     getNewSubs() {
-        const sql = "SELECT s.id, s.productname, s.quantity, s.orderid FROM suborders s WHERE s.branchid=$2 AND s.pageid=$1 AND s.status!='done' AND s.orderid=$3"
+        const sql = "SELECT s.id, s.productname, s.quantity, s.orderid, p.productsku, p.photourl, p.price, p.currency FROM suborders s JOIN products p on s.productid = p.id WHERE s.branchid=$2 AND s.pageid=$1 AND s.status!='done' AND s.orderid=$3"
         return sql
     },
     updateOrderStatus() {
@@ -30,7 +30,7 @@ module.exports = sql = {
     },
     updateSubsStatus() {
         //const sql = "UPDATE orders SET status=$4 WHERE pageid=$1 AND branchid=$2 AND orderid=$3"
-        const sql = "UPDATE orders SET status=$3 WHERE pageid=$1 AND orderid=$2"
+        const sql = "UPDATE suborders SET status=$3 WHERE pageid=$1 AND orderid=$2"
         return sql
     },
     orders() {
