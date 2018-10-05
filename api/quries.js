@@ -5,7 +5,8 @@ const options = {
 };
 
 const pgp = require('pg-promise')(options);
-const connection = 'postgres://neetfoopxhpbdt:1e4b5acdc214f0f5732c58b097ef453104d207337cb483852782fc887d0f32fd@ec2-107-20-133-82.compute-1.amazonaws.com:5432/d6b6rk916vau3r?ssl=true';
+//const connection = 'postgres://neetfoopxhpbdt:1e4b5acdc214f0f5732c58b097ef453104d207337cb483852782fc887d0f32fd@ec2-107-20-133-82.compute-1.amazonaws.com:5432/d6b6rk916vau3r?ssl=true';
+const connection = "postgres://tjojtvnirbbmsm:ff9578470c7844520febc3ec25ada7aa861e4916751b8d5629a6c7f68f4aee00@ec2-50-16-196-138.compute-1.amazonaws.com:5432/d9jaguo5it9e82?ssl=true"
 const db = pgp(connection);
 
 module.exports = quries = {
