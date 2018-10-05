@@ -38,7 +38,7 @@ module.exports = quries = {
             const pageid = req.body.pageid.toString();
             const branchid = req.body.branchid.toString();
             const orderid = req.body.orderid.toString();
-            const order = await db.any(sql.getNewOrder, [pageid, branchid, orderid]);
+            const order = await db.one(sql.getNewOrder, [pageid, branchid, orderid]);
             console.log(order);
             //const table = await db.one(sql.getTable, [orderid]);
             const tables = await db.any(sql.getTables)
