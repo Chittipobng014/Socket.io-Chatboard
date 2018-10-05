@@ -17,7 +17,7 @@ module.exports = sql = {
         return sql
     },
     getNewOrder() {
-        const sql = "SELECT o.id, o.status, o.timestamp, o.customername, o.ordertype, o.branchtableid, o.submitorderdataid FROM orders o JOIN suborders s ON o.id=s.orderid WHERE s.branchid=$2 AND o.pageid=$1 AND o.status!='done' AND o.id=$3 GROUP BY o.id"
+        const sql = "SELECT o.id, o.status, o.timestamp, o.customername, s.ordertype, o.branchtableid, o.submitorderdataid FROM orders o JOIN suborders s ON o.id=s.orderid WHERE s.branchid=$2 AND o.pageid=$1 AND o.status!='done' AND o.id=$3 GROUP BY o.id"
         return sql
     },
     getNewSubs() {
